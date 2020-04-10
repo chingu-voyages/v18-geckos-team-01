@@ -1,0 +1,46 @@
+* {
+  background-color: black;
+}
+
+.movie-grid {
+  display: flex;
+}
+
+.movie-card {
+  margin: 30px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  display: flex;
+  border: 2px solid #f9c132;
+  border-radius: 25px;
+}
+
+.movie-card-child {
+  background-color: black;
+}
+
+.poster {
+  border-bottom: 2px solid #f9c132;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  width: 200px;
+  height: 250px;
+}
+
+.title {
+  color: white;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.rank {
+  padding-top: 10px;
+  color: #f9c132;
+}
+
+.title,
+.rank {
+  padding-left: 15px;
+}
