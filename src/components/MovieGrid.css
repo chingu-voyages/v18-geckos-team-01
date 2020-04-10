@@ -3,16 +3,17 @@
 }
 
 .movie-grid {
-  display: flex;
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5rem;
 }
 
 .movie-card {
-  margin: 30px;
-  flex-wrap: wrap;
   flex-direction: column;
-  display: flex;
   border: 2px solid #f9c132;
   border-radius: 25px;
+  width: fit-content;
 }
 
 .movie-card-child {
@@ -23,24 +24,13 @@
   border-bottom: 2px solid #f9c132;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
-  width: 200px;
-  height: 250px;
+  width: 100%;
 }
 
 .title {
+  padding: 10px 15px;
+  flex-wrap: wrap;
   color: white;
-  padding-bottom: 10px;
-  padding-right: 10px;
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
-}
-
-.rank {
-  padding-top: 10px;
-  color: #f9c132;
-}
-
-.title,
-.rank {
-  padding-left: 15px;
 }
