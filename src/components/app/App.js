@@ -1,11 +1,12 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import MovieGrid from "../MovieGrid";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>v18 Geckos - Team 1!</h1>
+      <header>
+        <MovieGrid />
       </header>
     </div>
   );
