@@ -1,28 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
-import MovieGrid from "../MovieGrid";
 
+import Hero from "../Hero";
+import MovieGrid from "../MovieGrid";
 import Search from '../Search';
 
 function App() {
+  const [querySearch, setQuerySearch] = useState();
 
   const searchFunction = (query) => {
     console.log("Searching for " + query);
-
-    fetch('http://www.omdbapi.com/?s='+query+'&apikey=2e759236')
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-      });
+    setQuerySearch(query);
   }
 
   return (
     <div className="App">
       <header className="App-header">
         <Search onSubmitSearch={searchFunction}/>
-        <h1>v18 Geckos - Team 1!</h1>
+        <Hero />
+        <MovieGrid query={querySearch} />
       </header>
     </div>
   );

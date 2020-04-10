@@ -17,28 +17,31 @@ const MovieCard = ({ poster, year, title }) => {
   );
 };
 
-const MovieGrid = () => {
+const MovieGrid = (props) => {
   const [movielist, setMovieList] = useState([]);
   const [error, setError] = useState(false);
   useEffect(() => {
-    fetch(
-      "https://movie-database-imdb-alternative.p.rapidapi.com/?&r=json&s=avengers",
-      {
-        method: "GET",
-        headers: {
-          "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
-          "x-rapidapi-key":
-            "3e7a2c9dfdmsh9b187f8271e7cecp1c2430jsn7fda3a194e2b",
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => setMovieList(response.Search))
-      .catch((error) => {
-        console.error(error);
-        setError(error);
-      });
-  }, []);
+    if (props.query !== '') {
+      fetch(
+        "https://movie-database-imdb-alternative.p.rapidapi.com/?&r=json&s="+props.query,
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
+            "x-rapidapi-key":
+              "3e7a2c9dfdmsh9b187f8271e7cecp1c2430jsn7fda3a194e2b",
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((response) => setMovieList(response.Search))
+        .catch((error) => {
+          console.error(error);
+          setError(error);
+        });
+
+    }
+  }, [props]);
 
   console.log(movielist);
 
