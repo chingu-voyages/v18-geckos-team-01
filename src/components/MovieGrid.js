@@ -9,7 +9,7 @@ const MovieCard = ({ poster, year, title }) => {
         alt={`Movie title: ${title}`}
         src={poster}
       />
-      <div className="rank movie-card-child">{year}</div>
+      {/* <div className="rank movie-card-child">{year}</div> */}
       <div className="title movie-card-child">
         {title} ({year})
       </div>
@@ -21,8 +21,17 @@ const MovieGrid = () => {
   const [movielist, setMovieList] = useState([]);
   const [error, setError] = useState(false);
   useEffect(() => {
-    let url = `http://www.omdbapi.com/?s=avengers&apikey=e0cd92a3`;
-    fetch(url)
+    fetch(
+      "https://movie-database-imdb-alternative.p.rapidapi.com/?&r=json&s=avengers",
+      {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
+          "x-rapidapi-key":
+            "3e7a2c9dfdmsh9b187f8271e7cecp1c2430jsn7fda3a194e2b",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((response) => setMovieList(response.Search))
       .catch((error) => {
@@ -30,6 +39,8 @@ const MovieGrid = () => {
         setError(error);
       });
   }, []);
+
+  console.log(movielist);
 
   return (
     <div className="movie-grid">
