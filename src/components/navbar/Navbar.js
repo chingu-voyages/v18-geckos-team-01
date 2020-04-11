@@ -22,13 +22,13 @@ const StyledLogo = styled.a`
   line-height: 60px;
 `;
 
-function Navbar() {
+function Navbar({onSubmitSearch}) {
   return (
     <StyledNav>
       <StyledLogo><img src={Logo} alt={"film reel logo"} href={"#"}/></StyledLogo>
       <NavItem text="movies" href="#"/>
       <NavItem text="TV shows" href="#"/>
-      <Search />
+      <Search onSubmitSearch={onSubmitSearch} />
       <NavItem text="friends" href="#"/>
       <NavItem text="watchlist" href="#"/>
       <NavItem color="#f9c132" text="sign in" href="#"/>

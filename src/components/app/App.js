@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Navbar />
+        <Navbar onSubmitSearch={searchFunction} />
         <Hero />
         <MovieGrid query={querySearch} />
       </header>
