@@ -13,7 +13,9 @@ export default Hero;
 const HeroImage = styled.div`
   background-image: url(${HeroImg});
   height: 65vh;
-  width: 100vw;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 1.2em;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;

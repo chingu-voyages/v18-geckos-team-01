@@ -1,9 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-function Search() {
+const Input = styled.input`
+  box-sizing: border-box;
+  background: #000;
+  border: 3px solid #02B2D9;
+  border-radius: 30px;
+  color: ${props => props.inputColor || "#02B2D9"};
+  height: 50px;
+  outline: none;
+  padding-left: 1.8em;
+  padding-right: 3em;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.2em;
+  line-height: 36px;
+  width: 100%;
+  text-overflow: ellipsis;
+
+  &::placeholder {
+    color: #C4C4C4;
+  }
+
+`;
+
+const SearchButton = styled.div`
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 31px;
+  top: 13px;
+
+  border: 3px solid #02B2D9;
+  border-radius: 10px;
+  box-sizing: border-box;
+
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    background-color: #02B2D9;
+    display: inline-block;
+    position: absolute;
+    width: 9.21px;
+    height: 0px;
+    right: -11px;
+    top: 13px;
+
+    border: 2px solid #02B2D9;
+    transform: rotate(45deg);
+  }
+
+`
+
+function Search({onSubmitSearch}) {
+  const [query, setQuery] = useState("");
+
+  const handleChange = event => setQuery(event.target.value);
+
   return (
-    <div>
-      
+    <div style={{position: "relative", width: "40%"}}>
+      <Input placeholder="Find Movies, TV Shows, Celebrities, and more..." onChange = {handleChange} />
+      <SearchButton onClick = { ()=>{
+        if (query !== '')
+          onSubmitSearch(query)
+        } } />
     </div>
   )
 }
