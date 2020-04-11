@@ -1,0 +1,36 @@
+* {
+  background-color: black;
+}
+
+.movie-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5rem;
+}
+
+.movie-card {
+  flex-direction: column;
+  border: 2px solid #f9c132;
+  border-radius: 25px;
+  width: fit-content;
+}
+
+.movie-card-child {
+  background-color: black;
+}
+
+.poster {
+  border-bottom: 2px solid #f9c132;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  width: 100%;
+}
+
+.title {
+  padding: 10px 15px;
+  flex-wrap: wrap;
+  color: white;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
