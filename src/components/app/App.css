@@ -1,3 +1,9 @@
 body {
   margin: 30px;
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
 }

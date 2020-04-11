@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import "./App.css";
-
 import Hero from "../Hero";
 import MovieGrid from "../MovieGrid";
 import Search from '../Search';
+import Navbar from "../navbar/Navbar";
 
 function App() {
   const [querySearch, setQuerySearch] = useState();
@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Search onSubmitSearch={searchFunction}/>
+        <Navbar />
         <Hero />
         <MovieGrid query={querySearch} />
       </header>
