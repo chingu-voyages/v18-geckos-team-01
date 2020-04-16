@@ -7,16 +7,20 @@ const StyledNavItem = styled.a`
   text-transform: capitalize;
   line-height: 60px;
   color: ${props => props.color || 'white'};
-  padding: .5em;
+  padding: 0.5em;
   height: 60px;
+
+  @media (max-width: 977px) {
+    font-size: 1em;
+  }
 `;
 
 function NavItem(props) {
   return (
-    <StyledNavItem color={props.color} href={ props.href }>
-        { props.text }
+    <StyledNavItem color={props.color} href={props.href}>
+      {props.text}
     </StyledNavItem>
-  )
+  );
 }
 
 export default NavItem;
