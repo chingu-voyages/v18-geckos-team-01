@@ -5,6 +5,7 @@ import MovieGrid from '../MovieGrid';
 import Search from '../Search';
 import Navbar from '../navbar/Navbar';
 import SignIn from '../SignIn';
+import CreateAccount from '../CreateAccount';
 
 function App() {
   const [querySearch, setQuerySearch] = useState();
