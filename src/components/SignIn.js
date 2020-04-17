@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SignIn = (props) => {
+const SignIn = props => {
   return (
     <SignInContainer showSignInModal={props.showSignInModal}>
+      <CloseButton onClick={props.onSignInCloseButtonClicked}>&times;</CloseButton>
       <SignInForm>
         <h1>Sign In To Your Account</h1>
         <input type="text" placeholder="Email" />
@@ -22,6 +23,19 @@ const SignIn = (props) => {
 
 export default SignIn;
 
+// const ModalBackground = styled.div`
+//   left: 0;
+//   top: 0;
+//   width: 100%;
+//   height: 100%;
+//   overflow: auto;
+//   filter: blur(8px);
+//   -webkit-filter: blur(8px);
+//   -moz-filter: blur(8px);
+//   -o-filter: blur(8px);
+//   -ms-filter: blur(8px);
+// `;
+
 const SignInContainer = styled.div`
   display: ${props => (props.showSignInModal ? 'block' : 'none')};
   position: absolute;
@@ -34,6 +48,16 @@ const SignInContainer = styled.div`
   box-sizing: border-box;
   border-radius: 25px;
   z-index: 1;
+`;
+
+const CloseButton = styled.span`
+  cursor: pointer;
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  line-height: 18px;
 `;
 
 const SignInForm = styled.div`
