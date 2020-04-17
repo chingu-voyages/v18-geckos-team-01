@@ -17,7 +17,7 @@ const StyledNavItem = styled.a`
 
 function NavItem(props) {
   return (
-    <StyledNavItem color={props.color} href={props.href}>
+    <StyledNavItem color={props.color} href={props.href} onClick={props.onClick}>
       {props.text}
     </StyledNavItem>
   );
