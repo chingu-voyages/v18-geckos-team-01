@@ -5,6 +5,9 @@ import CreateAccount from './CreateAccount';
 const SignIn = props => {
   const [showCreateAccountModal, setCreateAccountModal] = useState(false);
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const onCreateClickedHandler = () => {
     setCreateAccountModal(true);
   };
@@ -12,6 +15,24 @@ const SignIn = props => {
   const onCreateClosedClickedHandler = () => {
     setCreateAccountModal(false);
   };
+
+  const SignInToAccount = async (p_email, p_password) => {
+    let response = await fetch('http://localhost:1337/auth/local', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify( {
+        "identifier": p_email,
+        "password": p_password
+      })
+    });
+    let result = await response.json();
+    props.onSignInCloseButtonClicked();
+    alert('Logged in as ' + result.user.username + " jwt: " + result.jwt);
+    console.log(result);
+    return result;
+  }
 
   return (
     <Fragment>
@@ -21,9 +42,9 @@ const SignIn = props => {
         </CloseButton>
         <SignInForm>
           <h1>Sign In To Your Account</h1>
-          <input type="text" placeholder="Email" />
-          <input type="text" placeholder="Password" />
-          <SignInButton>Sign In</SignInButton>
+          <input type="text" placeholder="Email" onChange={(e) => {setEmail(e.target.value)}} />
+          <input type="password" placeholder="Password" onChange={(e) => {setPassword(e.target.value)}} />
+          <SignInButton onClick={()=>{SignInToAccount(email, password)}}>Sign In</SignInButton>
           <h3>Don't have an account? <span onClick={onCreateClickedHandler}>Create</span></h3>
           <h2>
             Or sign in with <span>Facebook</span>
