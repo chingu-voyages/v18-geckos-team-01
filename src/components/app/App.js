@@ -5,7 +5,7 @@ import MovieGrid from '../MovieGrid';
 import Search from '../Search';
 import Navbar from '../navbar/Navbar';
 import Modal from '../Modal/Modal';
-import SignInAndCreateAccount from '../Modal/SignInAndCreateAccount';
+import SignInAndCreateAccount from '../AccountModal/SignInAndCreateAccount';
 
 function App() {
   const [querySearch, setQuerySearch] = useState();
