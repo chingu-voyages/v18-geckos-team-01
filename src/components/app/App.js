@@ -4,24 +4,24 @@ import Hero from '../Hero';
 import MovieGrid from '../MovieGrid';
 import Search from '../Search';
 import Navbar from '../navbar/Navbar';
-import SignIn from '../SignIn';
-import CreateAccount from '../CreateAccount';
+import Modal from '../Modal/Modal';
+import SignInAndCreateAccount from '../Modal/SignInAndCreateAccount';
 
 function App() {
   const [querySearch, setQuerySearch] = useState();
-  const [showSignInModal, setShowSignInModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const searchFunction = query => {
     console.log('Searching for ' + query);
     setQuerySearch(query);
   };
 
-  const showSignInModalHandler = () => {
-    setShowSignInModal(true);
+  const showModalHandler = () => {
+    setShowModal(true);
   };
 
-  const closeSignInModalHandler = () => {
-    setShowSignInModal(false);
+  const closeModalHandler = () => {
+    setShowModal(false);
   }
 
   return (
@@ -29,11 +29,13 @@ function App() {
       <header className="App-header">
         <Navbar
           onSubmitSearch={searchFunction}
-          onSignInLinkClicked={showSignInModalHandler}
+          onSignInLinkClicked={showModalHandler}
         />
         <Hero />
         <MovieGrid query={querySearch} />
-        <SignIn showSignInModal={showSignInModal} onSignInCloseButtonClicked={closeSignInModalHandler} />
+        <Modal showModal={showModal} onCloseButtonClicked={closeModalHandler}>
+          <SignInAndCreateAccount />
+        </Modal>
       </header>
     </div>
   );

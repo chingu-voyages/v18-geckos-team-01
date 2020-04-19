@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from 'react';
 import styled from 'styled-components';
-import CreateAccount from './CreateAccount';
 
 const SignIn = props => {
   const [showCreateAccountModal, setCreateAccountModal] = useState(false);
@@ -12,9 +11,9 @@ const SignIn = props => {
     setCreateAccountModal(true);
   };
 
-  const onCreateClosedClickedHandler = () => {
+  const onSignInLinkClickedHandler = () => {
     setCreateAccountModal(false);
-  };
+  }
 
   const SignInToAccount = async (p_email, p_password) => {
     let response = await fetch('http://localhost:1337/auth/local', {
@@ -36,11 +35,21 @@ const SignIn = props => {
 
   return (
     <Fragment>
-      <SignInContainer showSignInModal={props.showSignInModal}>
-        <CloseButton onClick={props.onSignInCloseButtonClicked}>
-          &times;
-        </CloseButton>
-        <SignInForm>
+      {showCreateAccountModal ? (
+        <FormContainer>
+          <h1>Create a New Account</h1>
+          <input type="text" placeholder="Email" />
+          <input type="text" placeholder="Password" />
+          <FormButton>Sign Up</FormButton>
+          <h3>
+            Already have an account? <span onClick={onSignInLinkClickedHandler}>Sign In</span>
+          </h3>
+          <h2>
+            Or register with <span>Facebook</span>
+          </h2>
+        </FormContainer>
+      ) : (
+        <FormContainer>
           <h1>Sign In To Your Account</h1>
           <input type="text" placeholder="Email" onChange={(e) => {setEmail(e.target.value)}} />
           <input type="password" placeholder="Password" onChange={(e) => {setPassword(e.target.value)}} />
@@ -49,43 +58,15 @@ const SignIn = props => {
           <h2>
             Or sign in with <span>Facebook</span>
           </h2>
-        </SignInForm>
-      </SignInContainer>
-      <CreateAccount
-        showCreateAccountModal={showCreateAccountModal}
-        onCreateAccountCloseButtonClicked={onCreateClosedClickedHandler}
-      />
+        </FormContainer>
+      )}
     </Fragment>
   );
 };
 
 export default SignIn;
 
-const SignInContainer = styled.div`
-  display: ${props => (props.showSignInModal ? 'block' : 'none')};
-  position: absolute;
-  top: 25%;
-  left: 33%;
-  width: 450px;
-  height: 450px;
-  background-color: #000;
-  border: 5px solid #0087a5;
-  box-sizing: border-box;
-  border-radius: 25px;
-  z-index: 1;
-`;
-
-const CloseButton = styled.span`
-  cursor: pointer;
-  color: white;
-  font-size: 2rem;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  line-height: 18px;
-`;
-
-const SignInForm = styled.div`
+const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -147,7 +128,7 @@ const SignInForm = styled.div`
   }
 `;
 
-const SignInButton = styled.button`
+const FormButton = styled.button`
   cursor: pointer;
   font-size: 20px;
   font-weight: 500;
