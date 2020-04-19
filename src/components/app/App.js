@@ -2,11 +2,11 @@ import React, {useState} from "react";
 import "./App.css";
 import Hero from "../Hero";
 import MovieGrid from "../MovieGrid";
-import Search from '../Search';
 import Navbar from "../navbar/Navbar";
 
 function App() {
   const [querySearch, setQuerySearch] = useState();
+  let isLoggedIn = true;
 
   const searchFunction = (query) => {
     console.log("Searching for " + query);
@@ -16,7 +16,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Navbar onSubmitSearch={searchFunction} />
+        <Navbar
+          onSubmitSearch={searchFunction} 
+          isLoggedIn={isLoggedIn} />
         <Hero />
         <MovieGrid query={querySearch} />
       </header>
