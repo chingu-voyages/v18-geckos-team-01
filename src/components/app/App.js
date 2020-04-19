@@ -9,9 +9,12 @@ import SignInAndCreateAccount from '../AccountModal/SignInAndCreateAccount';
 
 function App() {
   const [querySearch, setQuerySearch] = useState();
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal, isLoggedIn] = useState(false);
 
-  let isLoggedIn = true; // toggle after authentication and it will update the sign in NavItem
+  const userLoggedIn = () => {
+    console.log('Logged in successfully');
+    isLoggedIn(true);
+  }
 
   const searchFunction = query => {
     console.log('Searching for ' + query);
