@@ -1,19 +1,17 @@
-* {
-  background-color: black;
-}
 
 .movie-grid {
   display: grid;
-
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 5rem;
+  justify-content: space-around;
+  grid-template-columns: repeat(4, auto);
 }
 
 .movie-card {
   flex-direction: column;
   border: 2px solid #f9c132;
   border-radius: 25px;
-  width: fit-content;
+  width: 250px;
+  height: 300px;
+  margin-top: 20px;
 }
 
 .movie-card-child {
@@ -33,4 +31,23 @@
   color: white;
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
+}
+
+@media (max-width: 1140px) {
+  .movie-grid {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .movie-grid {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .movie-card {
+    width: 180px;
+    height: 230px;
+  }
 }

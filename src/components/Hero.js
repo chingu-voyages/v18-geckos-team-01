@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import HeroImg from '../images/bloodshot.jpg';
 
 const Hero = () => {
-  return (
-    <HeroImage />
-  );
+  return <HeroImage />;
 };
 
 export default Hero;
@@ -20,12 +18,11 @@ const HeroImage = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
 
-  @media (max-width: 800px) {
+  @media (max-width: 1024px) {
     height: 50vh;
   }
 
   @media (max-width: 600px) {
     height: 33vh;
   }
-  
 `;
