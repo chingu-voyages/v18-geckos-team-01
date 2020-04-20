@@ -17,7 +17,7 @@ const SignIn = props => {
       })
     });
     let result = await response.json();
-    props.onSignInCloseButtonClicked();
+    // props.onSignInCloseButtonClicked();
     alert('Logged in as ' + result.user.username + ' jwt: ' + result.jwt);
     console.log(result);
     return result;

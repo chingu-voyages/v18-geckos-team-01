@@ -10,9 +10,12 @@ import SignInAndCreateAccount from '../AccountModal/SignInAndCreateAccount';
 function App() {
   const [querySearch, setQuerySearch] = useState();
   const [showModal, setShowModal, isLoggedIn] = useState(false);
+  const [jwt, setJwt] = useState("");
+  const [userMovies, setUserMovies] = useState([]);
 
-  const userLoggedIn = () => {
-    console.log('Logged in successfully');
+  const userLoggedIn = (jwt) => {
+    console.log('Logged in successfully: jwt: ' + jwt);
+    setJwt(jwt);
     isLoggedIn(true);
   }
 
@@ -20,6 +23,50 @@ function App() {
     console.log('Searching for ' + query);
     setQuerySearch(query);
   };
+
+  const getUserMovies = async (jwt) => {
+    
+
+    //TODO read from database
+    setUserMovies( [
+        {
+            "id": 1,
+            "title": "Hunger Games",
+            "watched": false,
+            "user": null,
+            "created_at": "2020-04-18T12:53:58.667Z",
+            "updated_at": "2020-04-18T13:29:44.837Z"
+        },
+        {
+            "id": 2,
+            "title": "another movie",
+            "watched": false,
+            "user": null,
+            "created_at": "2020-04-18T13:29:44.831Z",
+            "updated_at": "2020-04-18T13:30:56.831Z"
+        },
+        {
+            "id": 3,
+            "title": "a third movie",
+            "watched": false,
+            "user": {
+                "id": 1,
+                "username": "test",
+                "email": "test@email.com",
+                "provider": "local",
+                "confirmed": true,
+                "blocked": null,
+                "role": 1,
+                "movie": 3,
+                "created_at": "2020-04-18T07:33:31.635Z",
+                "updated_at": "2020-04-18T13:30:56.833Z"
+            },
+            "created_at": "2020-04-18T13:30:56.825Z",
+            "updated_at": "2020-04-18T13:30:56.835Z"
+        }
+    ]
+    )
+  }
 
   const showModalHandler = () => {
     setShowModal(true);
@@ -35,12 +82,13 @@ function App() {
         <Navbar
           onSubmitSearch={searchFunction}
           onSignInLinkClicked={showModalHandler}
+          onWatchListClicked={getUserMovies}
           isLoggedIn={isLoggedIn}
         />
         <Hero />
         <MovieGrid query={querySearch} />
         <Modal showModal={showModal} onCloseButtonClicked={closeModalHandler}>
-          <SignInAndCreateAccount />
+          <SignInAndCreateAccount onS />
         </Modal>
       </header>
     </div>

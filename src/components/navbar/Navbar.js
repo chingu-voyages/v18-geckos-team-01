@@ -22,7 +22,7 @@ const StyledLogo = styled.a`
   line-height: 60px;
 `;
 
-function Navbar({onSubmitSearch, onSignInLinkClicked, isLoggedIn}) {
+function Navbar({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLoggedIn}) {
   return (
     <StyledNav>
       <StyledLogo><img src={Logo} alt={"film reel logo"} href={"#"}/></StyledLogo>
@@ -30,7 +30,7 @@ function Navbar({onSubmitSearch, onSignInLinkClicked, isLoggedIn}) {
       <NavItem text="TV shows" href="#"/>
       <Search onSubmitSearch={onSubmitSearch} />
       <NavItem text="friends" href="#"/>
-      <NavItem text="watchlist" href="#"/>
+      <NavItem text="watchlist" onClick={onWatchListClicked} href="#"/>
       <NavItem isLoggedIn={isLoggedIn} color="#f9c132" text="sign in" href="#"/>
       <NavItem onClick={onSignInLinkClicked} isLoggedIn={isLoggedIn} color="#f9c132" text="sign in" />
     </StyledNav>
