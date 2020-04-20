@@ -8,8 +8,9 @@ import Modal from '../Modal/Modal';
 import SignInAndCreateAccount from '../AccountModal/SignInAndCreateAccount';
 
 function App() {
-  const [querySearch, setQuerySearch] = useState();
-  const [showModal, setShowModal, isLoggedIn] = useState(false);
+  const [querySearch, setQuerySearch] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [jwt, setJwt] = useState("");
   const [userMovies, setUserMovies] = useState([]);
 
@@ -24,48 +25,24 @@ function App() {
     setQuerySearch(query);
   };
 
-  const getUserMovies = async (jwt) => {
-    
+  const getUserMovies = async () => {
+    let response = await fetch('http://localhost:1337/movies', {
+      method: 'get',
+      headers: {
+        'Authorization': 'Bearer ' + jwt
+      }
+    });
+    let result = await response.json();
+    console.log(result);
 
-    //TODO read from database
-    setUserMovies( [
-        {
-            "id": 1,
-            "title": "Hunger Games",
-            "watched": false,
-            "user": null,
-            "created_at": "2020-04-18T12:53:58.667Z",
-            "updated_at": "2020-04-18T13:29:44.837Z"
-        },
-        {
-            "id": 2,
-            "title": "another movie",
-            "watched": false,
-            "user": null,
-            "created_at": "2020-04-18T13:29:44.831Z",
-            "updated_at": "2020-04-18T13:30:56.831Z"
-        },
-        {
-            "id": 3,
-            "title": "a third movie",
-            "watched": false,
-            "user": {
-                "id": 1,
-                "username": "test",
-                "email": "test@email.com",
-                "provider": "local",
-                "confirmed": true,
-                "blocked": null,
-                "role": 1,
-                "movie": 3,
-                "created_at": "2020-04-18T07:33:31.635Z",
-                "updated_at": "2020-04-18T13:30:56.833Z"
-            },
-            "created_at": "2020-04-18T13:30:56.825Z",
-            "updated_at": "2020-04-18T13:30:56.835Z"
-        }
-    ]
-    )
+    setUserMovies(result);
+
+    return result;
+  }
+
+  const onSignInSuccessHandler = (jwt) => {
+    setJwt(jwt);
+    setIsLoggedIn(true);
   }
 
   const showModalHandler = () => {
@@ -88,7 +65,7 @@ function App() {
         <Hero />
         <MovieGrid query={querySearch} />
         <Modal showModal={showModal} onCloseButtonClicked={closeModalHandler}>
-          <SignInAndCreateAccount onS />
+          <SignInAndCreateAccount onSignInSuccess={onSignInSuccessHandler} />
         </Modal>
       </header>
     </div>

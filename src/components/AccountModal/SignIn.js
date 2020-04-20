@@ -4,6 +4,7 @@ import { FormContainer, FormButton } from './SharedStyles/FormStyles';
 const SignIn = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [jwt, setJwt] = useState('');
 
   const SignInToAccount = async (p_email, p_password) => {
     let response = await fetch('http://localhost:1337/auth/local', {
@@ -19,6 +20,7 @@ const SignIn = props => {
     let result = await response.json();
     // props.onSignInCloseButtonClicked();
     alert('Logged in as ' + result.user.username + ' jwt: ' + result.jwt);
+    props.onSignInSuccess(result.jwt);
     console.log(result);
     return result;
   };

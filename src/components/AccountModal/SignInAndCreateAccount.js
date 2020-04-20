@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 import CreateAccount from './CreateAccount';
 import SignIn from './SignIn';
 
-const SignInAndCreateAccount = () => {
+const SignInAndCreateAccount = (props) => {
   const [showCreateAccountModal, setCreateAccountModal] = useState(false);
 
   const onSignInLinkClickedHandler = () => {
@@ -13,6 +13,10 @@ const SignInAndCreateAccount = () => {
     setCreateAccountModal(true);
   };
 
+  const onSignInSuccessHandler = (jwt) => {
+    props.onSignInSuccess(jwt);
+  };
+
   return (
     <Fragment>
       {showCreateAccountModal ? (
@@ -20,7 +24,7 @@ const SignInAndCreateAccount = () => {
           onSignInLinkClickedHandler={onSignInLinkClickedHandler}
         />
       ) : (
-        <SignIn onCreateClickedHandler={onCreateClickedHandler} />
+        <SignIn onCreateClickedHandler={onCreateClickedHandler} onSignInSuccess={onSignInSuccessHandler} />
       )}
     </Fragment>
   );
