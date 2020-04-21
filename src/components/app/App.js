@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import Hero from '../Hero';
 import MovieGrid from '../MovieGrid';
-import Search from '../Search';
 import Navbar from '../navbar/Navbar';
 import Modal from '../Modal/Modal';
 import SignInAndCreateAccount from '../AccountModal/SignInAndCreateAccount';
@@ -13,6 +12,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [jwt, setJwt] = useState("");
   const [userMovies, setUserMovies] = useState([]);
+  const [open, setOpen] = useState(false); //BurgerMenu states
 
   const userLoggedIn = (jwt) => {
     console.log('Logged in successfully: jwt: ' + jwt);
@@ -61,6 +61,8 @@ function App() {
           onSignInLinkClicked={showModalHandler}
           onWatchListClicked={getUserMovies}
           isLoggedIn={isLoggedIn}
+          open={open}
+          setOpen={setOpen}
         />
         <Hero />
         <MovieGrid query={querySearch} />
