@@ -30,6 +30,10 @@ const StyledNavItem = styled.a`
   @media (max-width: 977px) {
     font-size: 1em;
   }
+
+  @media (max-width: 771px) {
+    display: none;
+  }
 `;
 
 function NavItem(props) {

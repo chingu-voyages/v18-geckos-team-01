@@ -1,6 +1,8 @@
 import React from 'react';
 import NavItem from './NavItem';
 import Search from '../Search';
+import Burger from './Burger';
+import BurgerMenu from './BurgerMenu';
 import styled from 'styled-components';
 import Logo from '../../images/cinema.svg';
 
@@ -10,6 +12,10 @@ const StyledNav = styled.div`
   align-items: center;
   width: 100%;
   margin-bottom: 1.2em;
+
+  @media screen and (max-width: 771px) {
+    justify-content: space-between;
+  }
 `;
 
 const StyledLogo = styled.a`
@@ -20,9 +26,13 @@ const StyledLogo = styled.a`
   width: 60px;
   margin-left: 10px;
   line-height: 60px;
+
+  @media screen and (max-width: 771px) {
+    margin-top: 8px;
+  }
 `;
 
-function Navbar({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLoggedIn}) {
+function Navbar({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLoggedIn, open, setOpen}) {
   return (
     <StyledNav>
       <StyledLogo><img src={Logo} alt={"film reel logo"} href={"#"}/></StyledLogo>
@@ -32,6 +42,8 @@ function Navbar({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLogg
       <NavItem text="friends" href="#"/>
       <NavItem text="watchlist" onClick={onWatchListClicked} href="#"/>
       <NavItem onClick={onSignInLinkClicked} isLoggedIn={isLoggedIn} color="#f9c132" text="sign in" />
+      <Burger onClick={onSignInLinkClicked} isLoggedIn={isLoggedIn} open={open} setOpen={setOpen}/>
+      <BurgerMenu open={open}/>
     </StyledNav>
   )
 }

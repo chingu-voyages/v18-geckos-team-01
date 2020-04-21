@@ -22,6 +22,12 @@ const Input = styled.input`
     color: #C4C4C4;
   }
 
+  @media screen and (max-width: 771px) {
+    margin-top: 8px;
+    align-self: center;
+    font-size: .9em;
+  }
+
 `;
 
 const SearchButton = styled.div`
@@ -51,6 +57,18 @@ const SearchButton = styled.div`
     transform: rotate(45deg);
   }
 
+  @media screen and (max-width: 771px) {
+    top: 21px;
+  }
+`
+const SearchDiv = styled.div`
+  position: relative;
+  width: 40%;
+
+  @media screen and (max-width: 771px) {
+    width: 60%;
+  }
+
 `
 
 function Search({onSubmitSearch}) {
@@ -59,13 +77,13 @@ function Search({onSubmitSearch}) {
   const handleChange = event => setQuery(event.target.value);
 
   return (
-    <div style={{position: "relative", width: "40%"}}>
-      <Input placeholder="Find Movies, TV Shows, Celebrities, and more..." onChange = {handleChange} />
+    <SearchDiv>
+          <Input placeholder="Find Movies, TV Shows, Celebrities, and more..." onChange = {handleChange} />
       <SearchButton onClick = { ()=>{
         if (query !== '')
           onSubmitSearch(query)
         } } />
-    </div>
+    </SearchDiv>
   )
 }
 
