@@ -59,6 +59,7 @@ export const FormContainer = styled.div`
     margin-bottom: 1rem;
     border-style: none;
     font-family: inherit;
+    outline: none;
   }
 `;
 

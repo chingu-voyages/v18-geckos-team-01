@@ -31,7 +31,6 @@ function Navbar({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLogg
       <Search onSubmitSearch={onSubmitSearch} />
       <NavItem text="friends" href="#"/>
       <NavItem text="watchlist" onClick={onWatchListClicked} href="#"/>
-      <NavItem isLoggedIn={isLoggedIn} color="#f9c132" text="sign in" href="#"/>
       <NavItem onClick={onSignInLinkClicked} isLoggedIn={isLoggedIn} color="#f9c132" text="sign in" />
     </StyledNav>
   )
