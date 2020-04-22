@@ -4,7 +4,7 @@ import NavItem from './NavItem';
 
 
 const StyledMenu = styled.nav`
-  display: flex;
+  display: ${props => (props.open ? 'flex' : 'none')};
   flex-direction: column;
   justify-content: flex-start;
   height: 100vh;

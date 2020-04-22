@@ -4,9 +4,9 @@ import styled from 'styled-components';
 const Input = styled.input`
   box-sizing: border-box;
   background: #000;
-  border: 3px solid #02B2D9;
+  border: 3px solid #02b2d9;
   border-radius: 30px;
-  color: ${props => props.inputColor || "#02B2D9"};
+  color: ${props => props.inputColor || '#02B2D9'};
   height: 50px;
   outline: none;
   padding-left: 1.8em;
@@ -19,15 +19,14 @@ const Input = styled.input`
   text-overflow: ellipsis;
 
   &::placeholder {
-    color: #C4C4C4;
+    color: #c4c4c4;
   }
 
   @media screen and (max-width: 771px) {
     margin-top: 8px;
     align-self: center;
-    font-size: .9em;
+    font-size: 0.9em;
   }
-
 `;
 
 const SearchButton = styled.div`
@@ -37,15 +36,15 @@ const SearchButton = styled.div`
   right: 31px;
   top: 13px;
 
-  border: 3px solid #02B2D9;
+  border: 3px solid #02b2d9;
   border-radius: 10px;
   box-sizing: border-box;
 
   cursor: pointer;
 
   &::before {
-    content: "";
-    background-color: #02B2D9;
+    content: '';
+    background-color: #02b2d9;
     display: inline-block;
     position: absolute;
     width: 9.21px;
@@ -53,14 +52,14 @@ const SearchButton = styled.div`
     right: -11px;
     top: 13px;
 
-    border: 2px solid #02B2D9;
+    border: 2px solid #02b2d9;
     transform: rotate(45deg);
   }
 
   @media screen and (max-width: 771px) {
     top: 21px;
   }
-`
+`;
 const SearchDiv = styled.div`
   position: relative;
   width: 40%;
@@ -68,23 +67,31 @@ const SearchDiv = styled.div`
   @media screen and (max-width: 771px) {
     width: 60%;
   }
+`;
 
-`
-
-function Search({onSubmitSearch}) {
-  const [query, setQuery] = useState("");
+function Search({ onSubmitSearch }) {
+  const [query, setQuery] = useState('');
 
   const handleChange = event => setQuery(event.target.value);
 
   return (
     <SearchDiv>
-          <Input placeholder="Find Movies, TV Shows, Celebrities, and more..." onChange = {handleChange} />
-      <SearchButton onClick = { ()=>{
-        if (query !== '')
-          onSubmitSearch(query)
-        } } />
+      <Input
+        placeholder="Find Movies, TV Shows, Celebrities, and more..."
+        onChange={handleChange}
+        onKeyPress={event => {
+          if (event.key === 'Enter') {
+            onSubmitSearch(query);
+          }
+        }}
+      />
+      <SearchButton
+        onClick={() => {
+          if (query !== '') onSubmitSearch(query);
+        }}
+      />
     </SearchDiv>
-  )
+  );
 }
 
 export default Search;

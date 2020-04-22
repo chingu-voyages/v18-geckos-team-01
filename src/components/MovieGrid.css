@@ -23,6 +23,7 @@
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
   width: 100%;
+  cursor: pointer;
 }
 
 .title {
@@ -31,6 +32,7 @@
   color: white;
   border-bottom-right-radius: 25px;
   border-bottom-left-radius: 25px;
+  cursor: pointer;
 }
 
 @media (max-width: 1140px) {
