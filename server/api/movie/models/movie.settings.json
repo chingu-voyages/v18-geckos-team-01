@@ -19,7 +19,7 @@
     "user": {
       "plugin": "users-permissions",
       "model": "user",
-      "via": "movie"
+      "via": "movies"
     }
   }
 }

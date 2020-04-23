@@ -11,7 +11,7 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [jwt, setJwt] = useState("");
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(null);
   const [userMovies, setUserMovies] = useState([]);
   const [open, setOpen] = useState(false); //BurgerMenu states
 
@@ -27,19 +27,42 @@ function App() {
     setQuerySearch(query);
   };
 
+  const saveMovie = async (movieTitle) => {
+    if (username !== null) {
+      let response = await fetch('http://localhost:1337/movies', {
+        method: 'post',
+        headers: {
+          'Authorization': 'Bearer ' + jwt
+        },
+        body: JSON.stringify({
+          title: movieTitle,
+          user: username.id
+        })
+      });
+      let result = await response.json();
+      console.log(result);
+
+      setUserMovies(result);
+
+      return result;
+    }
+  }
+
   const getUserMovies = async () => {
-    let response = await fetch('http://localhost:1337/movies', {
-      method: 'get',
-      headers: {
-        'Authorization': 'Bearer ' + jwt
-      }
-    });
-    let result = await response.json();
-    console.log(result);
+    if (username !== null) {
+      let response = await fetch('http://localhost:1337/movies?user='+username.id, {
+        method: 'get',
+        headers: {
+          'Authorization': 'Bearer ' + jwt
+        }
+      });
+      let result = await response.json();
+      console.log("Retrieving movies for " + username.username + ":" + JSON.stringify(result));
 
-    setUserMovies(result);
+      setUserMovies(result);
 
-    return result;
+      return result;
+    }
   }
 
   const onSignInSuccessHandler = (jwt, user) => {
@@ -73,7 +96,7 @@ function App() {
           setOpen={setOpen}
         />
         <Hero />
-        <MovieGrid query={querySearch} userMovies={userMovies} />
+        <MovieGrid query={querySearch} userMovies={userMovies} onSaveMovie={saveMovie} />
         <Modal showModal={showModal} onCloseButtonClicked={closeModalHandler}>
           <SignInAndCreateAccount onSignInSuccess={onSignInSuccessHandler} onCreateAccountSuccess={onCreateAccountSuccessHandler} />
         </Modal>
