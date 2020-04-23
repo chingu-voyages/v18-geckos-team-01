@@ -11,12 +11,14 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [jwt, setJwt] = useState("");
+  const [username, setUsername] = useState("");
   const [userMovies, setUserMovies] = useState([]);
   const [open, setOpen] = useState(false); //BurgerMenu states
 
-  const userLoggedIn = (jwt) => {
+  const userLoggedIn = (jwt, user) => {
     console.log('Logged in successfully: jwt: ' + jwt);
     setJwt(jwt);
+    setUsername(user);
     isLoggedIn(true);
   }
 
@@ -40,9 +42,14 @@ function App() {
     return result;
   }
 
-  const onSignInSuccessHandler = (jwt) => {
+  const onSignInSuccessHandler = (jwt, user) => {
+    closeModalHandler();
     setJwt(jwt);
+    setUsername(user);
     setIsLoggedIn(true);
+  }
+  const onCreateAccountSuccessHandler = () => {
+    closeModalHandler();
   }
 
   const showModalHandler = () => {
@@ -61,13 +68,14 @@ function App() {
           onSignInLinkClicked={showModalHandler}
           onWatchListClicked={getUserMovies}
           isLoggedIn={isLoggedIn}
+          user={username}
           open={open}
           setOpen={setOpen}
         />
         <Hero />
-        <MovieGrid query={querySearch} />
+        <MovieGrid query={querySearch} userMovies={userMovies} />
         <Modal showModal={showModal} onCloseButtonClicked={closeModalHandler}>
-          <SignInAndCreateAccount onSignInSuccess={onSignInSuccessHandler} />
+          <SignInAndCreateAccount onSignInSuccess={onSignInSuccessHandler} onCreateAccountSuccess={onCreateAccountSuccessHandler} />
         </Modal>
       </header>
     </div>

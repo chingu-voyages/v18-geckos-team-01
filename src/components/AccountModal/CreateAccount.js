@@ -17,7 +17,7 @@ const CreateAccount = props => {
         password: p_password
       })
     });
-    props.onCreateAccountCloseButtonClicked();
+    props.onCreateAccountSuccess();
     console.log(response);
     return response.json();
   };

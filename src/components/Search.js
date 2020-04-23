@@ -74,22 +74,25 @@ function Search({ onSubmitSearch }) {
 
   const handleChange = event => setQuery(event.target.value);
 
+  const handleEnterKey = event => {
+    if (event.key === "Enter" && query !== '')
+      onSubmitSearch(query);
+  }
+
+  const handleSearch = () => {
+    if (query !== '') {
+      onSubmitSearch(query);
+    } 
+  }
+
   return (
     <SearchDiv>
-      <Input
-        placeholder="Find Movies, TV Shows, Celebrities, and more..."
-        onChange={handleChange}
-        onKeyPress={event => {
-          if (event.key === 'Enter') {
-            onSubmitSearch(query);
-          }
-        }}
-      />
-      <SearchButton
-        onClick={() => {
-          if (query !== '') onSubmitSearch(query);
-        }}
-      />
+      <Input placeholder="Find Movies, TV Shows, Celebrities, and more..." 
+            onChange = {handleChange} 
+            onKeyUp = {handleEnterKey}
+          />
+
+      <SearchButton onClick = {handleSearch} />
     </SearchDiv>
   );
 }

@@ -39,7 +39,7 @@ const StyledNavItem = styled.a`
 function NavItem(props) {
   return (
      <StyledNavItem color={props.color} href={props.href} onClick={props.onClick}>
-    { props.isLoggedIn ? 'Logged In' : props.text }
+    { props.isLoggedIn ? props.user : props.text }
     </StyledNavItem>
   );
 }

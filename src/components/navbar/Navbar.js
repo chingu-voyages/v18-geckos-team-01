@@ -32,7 +32,7 @@ const StyledLogo = styled.a`
   }
 `;
 
-function Navbar({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLoggedIn, open, setOpen}) {
+function Navbar({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLoggedIn, user, open, setOpen}) {
   return (
     <StyledNav>
       <StyledLogo><img src={Logo} alt={"film reel logo"} href={"#"}/></StyledLogo>
@@ -41,7 +41,7 @@ function Navbar({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLogg
       <Search onSubmitSearch={onSubmitSearch} />
       <NavItem text="friends" href="#"/>
       <NavItem text="watchlist" onClick={onWatchListClicked} href="#"/>
-      <NavItem onClick={onSignInLinkClicked} isLoggedIn={isLoggedIn} color="#f9c132" text="sign in" />
+      <NavItem onClick={onSignInLinkClicked} isLoggedIn={isLoggedIn} user={user} color="#f9c132" text="sign in" />
       <Burger onClick={onSignInLinkClicked} isLoggedIn={isLoggedIn} open={open} setOpen={setOpen}/>
       <BurgerMenu open={open}/>
     </StyledNav>
