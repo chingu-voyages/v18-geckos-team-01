@@ -25,9 +25,10 @@ function App() {
   const searchFunction = query => {
     console.log('Searching for ' + query);
     setQuerySearch(query);
+    setUserMovies([]);
   };
 
-  const saveMovie = async (movieTitle) => {
+  const saveMovie = async (movieTitle, imdbid) => {
     if (username !== null) {
       let response = await fetch('http://localhost:1337/movies', {
         method: 'post',
@@ -36,6 +37,7 @@ function App() {
         },
         body: JSON.stringify({
           title: movieTitle,
+          imdbid: imdbid,
           user: username.id
         })
       });
@@ -59,7 +61,23 @@ function App() {
       let result = await response.json();
       console.log("Retrieving movies for " + username.username + ":" + JSON.stringify(result));
 
-      setUserMovies(result);
+      let m = result;
+      let mm = [];
+      let x;
+      for ( x in m) {
+        let response = await fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?&r=json&i="+m[x].imdbid,
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
+            "x-rapidapi-key":
+              "3e7a2c9dfdmsh9b187f8271e7cecp1c2430jsn7fda3a194e2b",
+          },
+        });
+        let result = await response.json();
+        mm.push(result);
+      }
+      setUserMovies(mm);
 
       return result;
     }

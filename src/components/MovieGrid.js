@@ -13,7 +13,7 @@ const MovieCard = ( props) => {
       <div className="title movie-card-child">
         {props.title} ({props.year})
       </div>
-      <span style={{color: "white"}} onClick={() => {props.onSaveMovie(props.title)}}>Add to Watchlist</span>
+      <span style={{color: "white"}} onClick={() => {props.onSaveMovie(props.title, props.imdbid)}}>Add to Watchlist</span>
     </div>
   );
 };
@@ -22,7 +22,7 @@ const MovieGrid = (props) => {
   const [movielist, setMovieList] = useState([]);
   const [error, setError] = useState(false);
   useEffect(() => {
-    if (props.query !== '') {
+    if (props.query !== '' && props.userMovies.length === 0) {
       fetch(
         "https://movie-database-imdb-alternative.p.rapidapi.com/?&r=json&s="+props.query,
         {
@@ -42,9 +42,13 @@ const MovieGrid = (props) => {
         });
 
     }
+    else if (props.userMovies.length > 0) {
+      setMovieList(props.userMovies);
+    }
   }, [props]);
 
-  console.log(movielist);
+ 
+
 
   return (
     <div className="movie-grid">
@@ -54,6 +58,7 @@ const MovieGrid = (props) => {
           poster={element.Poster}
           year={element.Year}
           title={element.Title}
+          imdbid={element.imdbID}
           onSaveMovie={props.onSaveMovie}
         />
       ))}

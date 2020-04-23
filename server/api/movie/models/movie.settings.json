@@ -20,6 +20,9 @@
       "plugin": "users-permissions",
       "model": "user",
       "via": "movies"
+    },
+    "imdbid": {
+      "type": "string"
     }
   }
 }
