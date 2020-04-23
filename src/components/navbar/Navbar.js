@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import NavItem from './NavItem';
 import Search from '../Search';
 import Burger from './Burger';
@@ -32,20 +33,41 @@ const StyledLogo = styled.a`
   }
 `;
 
-function Navbar({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLoggedIn, open, setOpen}) {
+function Navbar({
+  onSubmitSearch,
+  onSignInLinkClicked,
+  onWatchListClicked,
+  isLoggedIn,
+  open,
+  setOpen
+}) {
   return (
     <StyledNav>
-      <StyledLogo><img src={Logo} alt={"film reel logo"} href={"#"}/></StyledLogo>
-      <NavItem text="movies" href="#"/>
-      <NavItem text="TV shows" href="#"/>
+      <Link to={'/'}>
+        <StyledLogo>
+          <img src={Logo} alt={'film reel logo'} href={'#'} />
+        </StyledLogo>
+      </Link>
+      <NavItem text="movies" href="#" />
+      <NavItem text="TV shows" href="#" />
       <Search onSubmitSearch={onSubmitSearch} />
-      <NavItem text="friends" href="#"/>
-      <NavItem text="watchlist" onClick={onWatchListClicked} href="#"/>
-      <NavItem onClick={onSignInLinkClicked} isLoggedIn={isLoggedIn} color="#f9c132" text="sign in" />
-      <Burger onClick={onSignInLinkClicked} isLoggedIn={isLoggedIn} open={open} setOpen={setOpen}/>
-      <BurgerMenu open={open}/>
+      <NavItem text="friends" href="#" />
+      <NavItem text="watchlist" onClick={onWatchListClicked} href="#" />
+      <NavItem
+        onClick={onSignInLinkClicked}
+        isLoggedIn={isLoggedIn}
+        color="#f9c132"
+        text="sign in"
+      />
+      <Burger
+        onClick={onSignInLinkClicked}
+        isLoggedIn={isLoggedIn}
+        open={open}
+        setOpen={setOpen}
+      />
+      <BurgerMenu open={open} />
     </StyledNav>
-  )
+  );
 }
 
 export default Navbar;

@@ -2,6 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Modal = props => {
+  if (props.showModal) {
+    document.body.style.overflowY = 'hidden';
+  } else {
+    document.body.style.overflowY = 'auto';
+  }
+
   return (
     <ModalContainer showModal={props.showModal}>
       <ModalContent>

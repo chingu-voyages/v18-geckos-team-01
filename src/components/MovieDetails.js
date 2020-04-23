@@ -11,4 +11,6 @@ const MovieDetails = () => {
 
 export default MovieDetails;
 
-const MovieDetailsContainer = styled.div``;
+const MovieDetailsContainer = styled.div`
+    color: white;
+`;

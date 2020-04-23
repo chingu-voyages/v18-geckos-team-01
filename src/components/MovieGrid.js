@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
-import "./MovieGrid.css";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './MovieGrid.css';
 
 const MovieCard = ({ poster, year, title }) => {
   return (
     <div className="movie-card">
-      <img
-        className="poster movie-card-child"
-        alt={`Movie title: ${title}`}
-        src={poster}
-      />
+      <Link to={'/movieDetails'}>
+        <img
+          className="poster movie-card-child"
+          alt={`Movie title: ${title}`}
+          src={poster}
+        />
+      </Link>
+
       {/* <div className="rank movie-card-child">{year}</div> */}
       <div className="title movie-card-child">
         {title} ({year})
@@ -17,29 +21,29 @@ const MovieCard = ({ poster, year, title }) => {
   );
 };
 
-const MovieGrid = (props) => {
+const MovieGrid = props => {
   const [movielist, setMovieList] = useState([]);
   const [error, setError] = useState(false);
   useEffect(() => {
     if (props.query !== '') {
       fetch(
-        "https://movie-database-imdb-alternative.p.rapidapi.com/?&r=json&s="+props.query,
+        'https://movie-database-imdb-alternative.p.rapidapi.com/?&r=json&s=' +
+          props.query,
         {
-          method: "GET",
+          method: 'GET',
           headers: {
-            "x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
-            "x-rapidapi-key":
-              "3e7a2c9dfdmsh9b187f8271e7cecp1c2430jsn7fda3a194e2b",
-          },
+            'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
+            'x-rapidapi-key':
+              '3e7a2c9dfdmsh9b187f8271e7cecp1c2430jsn7fda3a194e2b'
+          }
         }
       )
-        .then((response) => response.json())
-        .then((response) => setMovieList(response.Search))
-        .catch((error) => {
+        .then(response => response.json())
+        .then(response => setMovieList(response.Search))
+        .catch(error => {
           console.error(error);
           setError(error);
         });
-
     }
   }, [props]);
 
