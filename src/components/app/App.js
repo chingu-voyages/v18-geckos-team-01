@@ -72,9 +72,7 @@ function App() {
           <Route exact path="/">
             <HomePage querySearch={querySearch} />
           </Route>
-          <Route exact path="/movieDetails">
-            <MovieDetails />
-          </Route>
+          <Route exact path="/movieDetails/:id" children={<MovieDetails />} />
         </BrowserRouter>
       </header>
     </div>

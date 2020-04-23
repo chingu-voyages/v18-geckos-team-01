@@ -2,17 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './MovieGrid.css';
 
-const MovieCard = ({ poster, year, title }) => {
+const MovieCard = ({ poster, year, title, id }) => {
   return (
     <div className="movie-card">
-      <Link to={'/movieDetails'}>
+      <Link to={`/movieDetails/${id}`}>
         <img
           className="poster movie-card-child"
           alt={`Movie title: ${title}`}
           src={poster}
         />
       </Link>
-
       {/* <div className="rank movie-card-child">{year}</div> */}
       <div className="title movie-card-child">
         {title} ({year})
@@ -24,6 +23,7 @@ const MovieCard = ({ poster, year, title }) => {
 const MovieGrid = props => {
   const [movielist, setMovieList] = useState([]);
   const [error, setError] = useState(false);
+
   useEffect(() => {
     if (props.query !== '') {
       fetch(
@@ -57,6 +57,7 @@ const MovieGrid = props => {
           poster={element.Poster}
           year={element.Year}
           title={element.Title}
+          id={element.imdbID}
         />
       ))}
     </div>
