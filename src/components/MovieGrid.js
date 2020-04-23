@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./MovieGrid.css";
 
-const MovieCard = ({ poster, year, title }) => {
+const MovieCard = ( props) => {
   return (
     <div className="movie-card">
       <img
         className="poster movie-card-child"
-        alt={`Movie title: ${title}`}
-        src={poster}
+        alt={`Movie title: ${props.title}`}
+        src={props.poster}
       />
       {/* <div className="rank movie-card-child">{year}</div> */}
       <div className="title movie-card-child">
-        {title} ({year})
+        {props.title} ({props.year})
       </div>
+      <span style={{color: "white"}} onClick={() => {props.onSaveMovie(props.title)}}>Add to Watchlist</span>
     </div>
   );
 };
@@ -53,6 +54,7 @@ const MovieGrid = (props) => {
           poster={element.Poster}
           year={element.Year}
           title={element.Title}
+          onSaveMovie={props.onSaveMovie}
         />
       ))}
     </div>

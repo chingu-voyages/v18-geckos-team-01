@@ -18,7 +18,7 @@ const SignIn = props => {
       })
     });
     let result = await response.json();
-    props.onSignInSuccess(result.jwt, result.user.username);
+    props.onSignInSuccess(result.jwt, result.user);
     console.log(result);
     return result;
   };
