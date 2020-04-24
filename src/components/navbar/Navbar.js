@@ -33,14 +33,7 @@ const StyledLogo = styled.a`
   }
 `;
 
-function Navbar({
-  onSubmitSearch,
-  onSignInLinkClicked,
-  onWatchListClicked,
-  isLoggedIn,
-  open,
-  setOpen
-}) {
+function Navbar({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLoggedIn, user, open, setOpen}) {
   return (
     <StyledNav>
       <Link to={'/'}>
@@ -56,6 +49,7 @@ function Navbar({
       <NavItem
         onClick={onSignInLinkClicked}
         isLoggedIn={isLoggedIn}
+        user={user}
         color="#f9c132"
         text="sign in"
       />

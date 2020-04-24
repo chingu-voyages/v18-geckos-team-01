@@ -13,15 +13,19 @@ const SignInAndCreateAccount = (props) => {
     setCreateAccountModal(true);
   };
 
-  const onSignInSuccessHandler = (jwt) => {
-    props.onSignInSuccess(jwt);
+  const onSignInSuccessHandler = (jwt, user) => {
+    props.onSignInSuccess(jwt, user);
   };
+
+  const onCreateAccountSuccessHandler = () => {
+    props.onCreateAccountSuccess();
+  }
 
   return (
     <Fragment>
       {showCreateAccountModal ? (
         <CreateAccount
-          onSignInLinkClickedHandler={onSignInLinkClickedHandler}
+          onSignInLinkClickedHandler={onSignInLinkClickedHandler} onCreateAccountSuccess={onCreateAccountSuccessHandler}
         />
       ) : (
         <SignIn onCreateClickedHandler={onCreateClickedHandler} onSignInSuccess={onSignInSuccessHandler} />

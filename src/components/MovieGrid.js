@@ -2,20 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './MovieGrid.css';
 
-const MovieCard = ({ poster, year, title, id }) => {
+const MovieCard = (props) => {
   return (
     <div className="movie-card">
-      <Link to={`/movieDetails/${id}`}>
+      <Link to={`/movieDetails/${props.id}`}>
         <img
           className="poster movie-card-child"
-          alt={`Movie title: ${title}`}
-          src={poster}
+          alt={`Movie title: ${props.title}`}
+          src={props.poster}
         />
       </Link>
       {/* <div className="rank movie-card-child">{year}</div> */}
       <div className="title movie-card-child">
-        {title} ({year})
+        {props.title} ({props.year})
       </div>
+      <span style={{color: "white"}} onClick={() => {props.onSaveMovie(props.title, props.id)}}>Add to Watchlist</span>
     </div>
   );
 };
@@ -25,7 +26,7 @@ const MovieGrid = props => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (props.query !== '') {
+    if (props.query !== '' && props.userMovies.length === 0) {
       fetch(
         'https://movie-database-imdb-alternative.p.rapidapi.com/?&r=json&s=' +
           props.query,
@@ -45,9 +46,13 @@ const MovieGrid = props => {
           setError(error);
         });
     }
+    else if (props.userMovies.length > 0) {
+      setMovieList(props.userMovies);
+    }
   }, [props]);
 
-  console.log(movielist);
+ 
+
 
   return (
     <div className="movie-grid">
@@ -57,7 +62,8 @@ const MovieGrid = props => {
           poster={element.Poster}
           year={element.Year}
           title={element.Title}
-          id={element.imdbID}
+          id={element.id}
+          onSaveMovie={props.onSaveMovie}
         />
       ))}
     </div>
