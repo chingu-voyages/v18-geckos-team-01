@@ -62,7 +62,7 @@ const MovieGrid = props => {
           poster={element.Poster}
           year={element.Year}
           title={element.Title}
-          id={element.id}
+          id={element.imdbID}
           onSaveMovie={props.onSaveMovie}
         />
       ))}

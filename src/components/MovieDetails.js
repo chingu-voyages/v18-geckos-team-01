@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import Star from '../images/star.svg';
 
 const MovieDetails = () => {
   let { id } = useParams();
@@ -29,23 +30,29 @@ const MovieDetails = () => {
 
   return (
     <MovieDetailsContainer>
-      <Poster src={movieDetails.Poster} />
+      <LeftColumnGrid>
+        <Poster src={movieDetails.Poster} />
+        <Rating>
+          <StarIcon src={Star} alt={'star logo for imdb rating'} />
+          {movieDetails.imdbRating} / 10
+        </Rating>
+      </LeftColumnGrid>
       <CenterColumnGrid>
         <Title>{movieDetails.Title}</Title>
         <Plot>{movieDetails.Plot}</Plot>
-        <Actors>{movieDetails.Actors}</Actors>
+        <Actors>Starring {movieDetails.Actors}</Actors>
         <Writer>Written by {movieDetails.Writer}</Writer>
       </CenterColumnGrid>
       <RightColumnGrid>
-        <Genre>
-          Genre <span>{movieDetails.Genre}</span>
-        </Genre>
-        <Rating>
+        <SuitabilityRating>
           Rated <span>{movieDetails.Rated}</span>
-        </Rating>
+        </SuitabilityRating>
         <Runtime>
           Runtime <span>{movieDetails.Runtime}</span>
         </Runtime>
+        <Genre>
+          Genre <span>{movieDetails.Genre}</span>
+        </Genre>
         <Released>
           Release Date <span>{movieDetails.Released}</span>
         </Released>
@@ -58,6 +65,9 @@ const MovieDetails = () => {
         <Language>
           Language(s) <span>{movieDetails.Language}</span>
         </Language>
+        <Production>
+          Production <span>{movieDetails.Production}</span>
+        </Production>
       </RightColumnGrid>
     </MovieDetailsContainer>
   );
@@ -72,15 +82,33 @@ const MovieDetailsContainer = styled.div`
   color: white;
 `;
 
+const LeftColumnGrid = styled.div`
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+`;
+
 const Poster = styled.img`
-  grid-column: 1/2;
+  grid-row: 1/2;
   border-radius: 5px;
+`;
+
+const Rating = styled.div`
+  grid-row: 3/4;
+  font-size: 1.2rem;
+  padding-top: 1rem;
+`;
+
+const StarIcon = styled.img`
+  width: 1.2rem;
+  height: 1.2rem;
+  padding-right: 0.5rem;
 `;
 
 const CenterColumnGrid = styled.div`
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 20% 40% 20% 20%;
+  grid-template-rows: 20% auto auto auto;
   font-size: 1.2rem;
   margin-left: 2rem;
 `;
@@ -90,29 +118,33 @@ const Title = styled.div`
   grid-row: 1/2;
   text-align: center;
   font-size: 2rem;
+  align-self: center;
 `;
 
 const Plot = styled.div`
   grid-column: 2/3;
   grid-row: 2/3;
   line-height: 2.2rem;
+  padding-top: 1rem;
 `;
 
 const Actors = styled.div`
   grid-column: 2/3;
   grid-row: 3/4;
-  color: #19b2d9;
+  align-self: center;
+  padding-top: 1rem;
 `;
 
 const Writer = styled.div`
   grid-column: 2/3;
   grid-row: 4/5;
+  padding-top: 1rem;
 `;
 
 const RightColumnGrid = styled.div`
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 20% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+  grid-template-rows: auto auto auto auto auto auto auto auto;
   margin-left: 2rem;
   font-size: 1.2rem;
 
@@ -121,30 +153,42 @@ const RightColumnGrid = styled.div`
   }
 `;
 
-const Genre = styled.div`
+const SuitabilityRating = styled.div`
   grid-row: 2/3;
-`;
-
-const Rating = styled.div`
-  grid-row: 3/4;
+  padding-bottom: 1rem;
 `;
 
 const Runtime = styled.div`
+  grid-row: 3/4;
+  padding-bottom: 1rem;
+`;
+
+const Genre = styled.div`
   grid-row: 4/5;
+  padding-bottom: 1rem;
 `;
 
 const Released = styled.div`
   grid-row: 5/6;
+  padding-bottom: 1rem;
 `;
 
 const Director = styled.div`
   grid-row: 6/7;
+  padding-bottom: 1rem;
 `;
 
 const Country = styled.div`
   grid-row: 7/8;
+  padding-bottom: 1rem;
 `;
 
 const Language = styled.div`
   grid-row: 8/9;
+  padding-bottom: 1rem;
+`;
+
+const Production = styled.div`
+  grid-row: 9/10;
+  padding-bottom: 1rem;
 `;
