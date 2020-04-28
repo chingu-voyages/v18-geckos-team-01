@@ -119,7 +119,7 @@ function App() {
           <SignInAndCreateAccount onSignInSuccess={onSignInSuccessHandler} onCreateAccountSuccess={onCreateAccountSuccessHandler} />
         </Modal>
           <Route exact path="/">
-            <HomePage querySearch={querySearch} userMovies={userMovies} />
+            <HomePage querySearch={querySearch} userMovies={userMovies} onSaveMovie={saveMovie} />
           </Route>
           <Route exact path="/movieDetails/:id" children={<MovieDetails />} />
         </BrowserRouter>

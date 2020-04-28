@@ -6,7 +6,7 @@ const HomePage = (props) => {
   return (
     <Fragment>
       <Hero />
-      <MovieGrid query={props.querySearch} userMovies={props.userMovies} />
+      <MovieGrid query={props.querySearch} userMovies={props.userMovies} onSaveMovie={props.onSaveMovie} />
     </Fragment>
   );
 };
