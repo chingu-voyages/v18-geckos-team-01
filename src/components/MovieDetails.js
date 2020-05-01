@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Star from '../images/star.svg';
+import Plus from '../images/plus.svg';
 
 const MovieDetails = () => {
   let { id } = useParams();
@@ -36,6 +37,10 @@ const MovieDetails = () => {
           <StarIcon src={Star} alt={'star logo for imdb rating'} />
           {movieDetails.imdbRating} / 10
         </Rating>
+        <AddToWatchlist
+          src={Plus}
+          alt={'plus sign to add movie to watchlist'}
+        />
       </LeftColumnGrid>
       <CenterColumnGrid>
         <Title>{movieDetails.Title}</Title>
@@ -84,19 +89,22 @@ const MovieDetailsContainer = styled.div`
 
 const LeftColumnGrid = styled.div`
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: 50% 50%;
   grid-template-rows: auto auto;
 `;
 
 const Poster = styled.img`
   grid-row: 1/2;
+  grid-column: 1 / span 2;
   border-radius: 5px;
+  padding-bottom: 1rem;
 `;
 
 const Rating = styled.div`
-  grid-row: 3/4;
+  grid-row: 2/3;
+  grid-column: 1/2;
   font-size: 1.2rem;
-  padding-top: 1rem;
+  align-self: center;
 `;
 
 const StarIcon = styled.img`
@@ -105,10 +113,20 @@ const StarIcon = styled.img`
   padding-right: 0.5rem;
 `;
 
+const AddToWatchlist = styled.img`
+  grid-row: 2/3;
+  grid-column: 2/3;
+  width: 1.8rem;
+  height: 1.8rem;
+  cursor: pointer;
+  align-self: center;
+  justify-self: end;
+`;
+
 const CenterColumnGrid = styled.div`
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 20% auto auto auto;
+  grid-template-rows: 20% repeat(3, auto);
   font-size: 1.2rem;
   margin-left: 2rem;
 `;
@@ -144,7 +162,7 @@ const Writer = styled.div`
 const RightColumnGrid = styled.div`
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: auto auto auto auto auto auto auto auto;
+  grid-template-rows: repeat(8, auto);
   margin-left: 2rem;
   font-size: 1.2rem;
 
