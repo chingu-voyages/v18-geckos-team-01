@@ -84,29 +84,55 @@ export default MovieDetails;
 
 const MovieDetailsContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+
+  @media (min-width: 1024px) {
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 `;
 
 const MovieDetailsGrid = styled.div`
-  position: relative;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 25% 50% 25%;
   grid-template-rows: auto;
   color: white;
+
+  @media (max-width: 1280px) {
+    grid-template-columns: 30% 40% 30%;
+  }
+
+  @media (max-width: 1060px) {
+    grid-template-columns: 35% 30% 35%;
+  }
+
+  @media (max-width: 1024px) {
+    position: relative;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, auto);
+  }
+
+  @media (max-width: 725px) {
+    grid-template-columns: auto;
+    grid-template-rows: repeat(3, auto);
+  }
 `;
 
 const LeftColumnGrid = styled.div`
   display: grid;
+  grid-column: 1/2;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(2, auto);
-  margin-left: 2rem;
+  justify-content: center;
+
+  @media (max-width: 725px) {
+    grid-column: 1 / 2;
+  }
 `;
 
 const Poster = styled.img`
@@ -114,6 +140,7 @@ const Poster = styled.img`
   grid-column: 1 / span 2;
   border-radius: 5px;
   justify-self: center;
+  margin-bottom: 1rem;
 `;
 
 const Rating = styled.div`
@@ -141,10 +168,18 @@ const AddToWatchlist = styled.img`
 
 const CenterColumnGrid = styled.div`
   display: grid;
+  grid-column: 2/3;
   grid-template-columns: auto;
   grid-template-rows: 20% repeat(3, auto);
   font-size: 1.2rem;
   margin-left: 2rem;
+  margin-right: 2rem;
+
+  @media (max-width: 725px) {
+    grid-column: 1 / 2;
+    grid-row: 2/3;
+    margin-top: 2rem;
+  }
 `;
 
 const Title = styled.div`
@@ -177,6 +212,7 @@ const Writer = styled.div`
 
 const RightColumnGrid = styled.div`
   display: grid;
+  grid-column: 3/4;
   grid-template-columns: auto;
   grid-template-rows: repeat(8, auto);
   margin-left: 2rem;
@@ -185,6 +221,18 @@ const RightColumnGrid = styled.div`
 
   span {
     color: #888;
+  }
+
+  @media (max-width: 1024px) {
+    grid-column: 1 / span 2;
+    grid-row: 2/3;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 725px) {
+    grid-column: 1/2;
+    grid-row: 3/4;
+    margin-top: 6rem;
   }
 `;
 
