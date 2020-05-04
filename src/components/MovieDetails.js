@@ -31,49 +31,51 @@ const MovieDetails = () => {
 
   return (
     <MovieDetailsContainer>
-      <LeftColumnGrid>
-        <Poster src={movieDetails.Poster} />
-        <Rating>
-          <StarIcon src={Star} alt={'star logo for imdb rating'} />
-          {movieDetails.imdbRating} / 10
-        </Rating>
-        <AddToWatchlist
-          src={Plus}
-          alt={'plus sign to add movie to watchlist'}
-        />
-      </LeftColumnGrid>
-      <CenterColumnGrid>
-        <Title>{movieDetails.Title}</Title>
-        <Plot>{movieDetails.Plot}</Plot>
-        <Actors>Starring {movieDetails.Actors}</Actors>
-        <Writer>Written by {movieDetails.Writer}</Writer>
-      </CenterColumnGrid>
-      <RightColumnGrid>
-        <SuitabilityRating>
-          Rated <span>{movieDetails.Rated}</span>
-        </SuitabilityRating>
-        <Runtime>
-          Runtime <span>{movieDetails.Runtime}</span>
-        </Runtime>
-        <Genre>
-          Genre <span>{movieDetails.Genre}</span>
-        </Genre>
-        <Released>
-          Release Date <span>{movieDetails.Released}</span>
-        </Released>
-        <Director>
-          Director <span>{movieDetails.Director}</span>
-        </Director>
-        <Country>
-          Country <span>{movieDetails.Country}</span>
-        </Country>
-        <Language>
-          Language(s) <span>{movieDetails.Language}</span>
-        </Language>
-        <Production>
-          Production <span>{movieDetails.Production}</span>
-        </Production>
-      </RightColumnGrid>
+      <MovieDetailsGrid>
+        <LeftColumnGrid>
+          <Poster src={movieDetails.Poster} />
+          <Rating>
+            <StarIcon src={Star} alt={'star logo for imdb rating'} />
+            {movieDetails.imdbRating} / 10
+          </Rating>
+          <AddToWatchlist
+            src={Plus}
+            alt={'plus sign to add movie to watchlist'}
+          />
+        </LeftColumnGrid>
+        <CenterColumnGrid>
+          <Title>{movieDetails.Title}</Title>
+          <Plot>{movieDetails.Plot}</Plot>
+          <Actors>Starring {movieDetails.Actors}</Actors>
+          <Writer>Written by {movieDetails.Writer}</Writer>
+        </CenterColumnGrid>
+        <RightColumnGrid>
+          <SuitabilityRating>
+            Rated <span>{movieDetails.Rated}</span>
+          </SuitabilityRating>
+          <Runtime>
+            Runtime <span>{movieDetails.Runtime}</span>
+          </Runtime>
+          <Genre>
+            Genre <span>{movieDetails.Genre}</span>
+          </Genre>
+          <Released>
+            Release Date <span>{movieDetails.Released}</span>
+          </Released>
+          <Director>
+            Director <span>{movieDetails.Director}</span>
+          </Director>
+          <Country>
+            Country <span>{movieDetails.Country}</span>
+          </Country>
+          <Language>
+            Language(s) <span>{movieDetails.Language}</span>
+          </Language>
+          <Production>
+            Production <span>{movieDetails.Production}</span>
+          </Production>
+        </RightColumnGrid>
+      </MovieDetailsGrid>
     </MovieDetailsContainer>
   );
 };
@@ -81,6 +83,19 @@ const MovieDetails = () => {
 export default MovieDetails;
 
 const MovieDetailsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+`;
+
+const MovieDetailsGrid = styled.div`
+  position: relative;
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: 25% 50% 25%;
   grid-template-rows: auto;
@@ -89,15 +104,16 @@ const MovieDetailsContainer = styled.div`
 
 const LeftColumnGrid = styled.div`
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: auto auto;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+  margin-left: 2rem;
 `;
 
 const Poster = styled.img`
   grid-row: 1/2;
   grid-column: 1 / span 2;
   border-radius: 5px;
-  padding-bottom: 1rem;
+  justify-self: center;
 `;
 
 const Rating = styled.div`
@@ -164,6 +180,7 @@ const RightColumnGrid = styled.div`
   grid-template-columns: auto;
   grid-template-rows: repeat(8, auto);
   margin-left: 2rem;
+  margin-right: 2rem;
   font-size: 1.2rem;
 
   span {
