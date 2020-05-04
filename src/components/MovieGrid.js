@@ -20,10 +20,12 @@ const MovieCard = props => {
         <CardText>
           {props.title} ({props.year})
         </CardText>
-        <AddToWatchlist
-          src={Plus}
-          alt={'plus sign to add movie to watchlist'}
-        />
+        <Link to={`/watchlist/${props.id}`}>
+          <AddToWatchlist
+            src={Plus}
+            alt={'plus sign to add movie to watchlist'}
+          />
+        </Link>
       </CardFooter>
     </Card>
   );
@@ -68,7 +70,6 @@ const MovieGrid = props => {
           title={element.Title}
           imdbRating={element.imdbRating}
           id={element.imdbID}
-          onSaveMovie={props.onSaveMovie}
         />
       ))}
     </MovieGridCards>
