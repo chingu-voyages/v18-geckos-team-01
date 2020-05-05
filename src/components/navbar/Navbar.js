@@ -33,7 +33,15 @@ const StyledLogo = styled.a`
   }
 `;
 
-function Navbar({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLoggedIn, user, open, setOpen}) {
+function Navbar({
+  onSubmitSearch,
+  onSignInLinkClicked,
+  onWatchListClicked,
+  isLoggedIn,
+  user,
+  open,
+  setOpen
+}) {
   return (
     <StyledNav>
       <Link to={'/'}>
@@ -45,7 +53,10 @@ function Navbar({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLogg
       <NavItem text="TV shows" href="#" />
       <Search onSubmitSearch={onSubmitSearch} />
       <NavItem text="friends" href="#" />
-      <NavItem text="watchlist" onClick={onWatchListClicked} href="#" />
+      <Link to={'/watchlist'}>
+        {/* <NavItem text="watchlist" onClick={onWatchListClicked} href="#" /> */}
+        <NavItem text="watchlist" href="#" />
+      </Link>
       <NavItem
         onClick={onSignInLinkClicked}
         isLoggedIn={isLoggedIn}

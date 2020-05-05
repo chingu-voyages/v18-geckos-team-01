@@ -6,7 +6,7 @@ import Modal from '../Modal/Modal';
 import HomePage from '../HomePage';
 import MovieDetails from '../MovieDetails';
 import SignInAndCreateAccount from '../AccountModal/SignInAndCreateAccount';
-import Watchlist from '../Watchlist';
+import Watchlist from '../../Watchlist/Watchlist';
 
 function App() {
   const [querySearch, setQuerySearch] = useState('');
@@ -123,7 +123,7 @@ function App() {
             <HomePage querySearch={querySearch} userMovies={userMovies} onSaveMovie={saveMovie} />
           </Route>
           <Route exact path="/movieDetails/:id" children={<MovieDetails />} />
-          <Route exact path="/watchlist/:id" children={<Watchlist />} />
+          <Route exact path="/watchlist" children={<Watchlist />} />
         </BrowserRouter>
       </header>
     </div>

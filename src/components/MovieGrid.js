@@ -1,10 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from '../Watchlist/axios-watchlist';
 import Star from '../images/star.svg';
 import Plus from '../images/plus.svg';
 import styled from 'styled-components';
 
 const MovieCard = props => {
+
+  const onAddToWatchlistClickedHandler = () => {
+    const movieToAdd = {
+      id: props.id,
+      poster: props.poster,
+      title: props.title,
+      rating: props.imdbRating,
+      year: props.year
+    };
+
+    axios
+      .post('./watchlist.json', movieToAdd)
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
+  };
+
   return (
     <Card>
       <Link to={`/movieDetails/${props.id}`}>
@@ -23,7 +40,8 @@ const MovieCard = props => {
         <Link to={`/watchlist/${props.id}`}>
           <AddToWatchlist
             src={Plus}
-            alt={'plus sign to add movie to watchlist'}
+            alt={'plus sign icon to add movie to watchlist'}
+            onClick={onAddToWatchlistClickedHandler}
           />
         </Link>
       </CardFooter>
