@@ -6,7 +6,6 @@ import Plus from '../images/plus.svg';
 import styled from 'styled-components';
 
 const MovieCard = props => {
-
   const onAddToWatchlistClickedHandler = () => {
     const movieToAdd = {
       id: props.id,
@@ -35,9 +34,9 @@ const MovieCard = props => {
         <StarIcon src={Star} alt={'star logo for imdb rating'} />
         <span>{props.imdbRating}</span>
         <CardText>
-          {props.title} ({props.year})
+          <CardTextTitle>{props.title}</CardTextTitle> ({props.year})
         </CardText>
-        <Link to={`/watchlist/${props.id}`}>
+        <Link to={`/watchlist`}>
           <AddToWatchlist
             src={Plus}
             alt={'plus sign icon to add movie to watchlist'}
@@ -191,6 +190,12 @@ const CardText = styled.div`
   border-bottom-left-radius: 25px;
   cursor: pointer;
   align-self: start;
+`;
+
+const CardTextTitle = styled.div`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const AddToWatchlist = styled.img`
