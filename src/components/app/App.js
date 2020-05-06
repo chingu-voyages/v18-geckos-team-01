@@ -123,7 +123,7 @@ function App() {
             <HomePage querySearch={querySearch} userMovies={userMovies} onSaveMovie={saveMovie} />
           </Route>
           <Route exact path="/movieDetails/:id" children={<MovieDetails />} />
-          <Route exact path="/watchlist/:id" children={<Watchlist />} />
+          <Route exact path="/watchlist/" children={<Watchlist />} />
         </BrowserRouter>
       </header>
     </div>
