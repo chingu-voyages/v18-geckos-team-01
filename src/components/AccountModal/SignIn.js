@@ -51,9 +51,6 @@ const SignIn = props => {
         Don't have an account?{' '}
         <span onClick={props.onCreateClickedHandler}>Create</span>
       </h3>
-      <h2>
-        Or sign in with <span>Facebook</span>
-      </h2>
     </FormContainer>
   );
 };

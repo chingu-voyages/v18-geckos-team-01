@@ -49,10 +49,7 @@ function Navbar({
           <img src={Logo} alt={'film reel logo'} href={'#'} />
         </StyledLogo>
       </Link>
-      <NavItem text="movies" href="#" />
-      <NavItem text="TV shows" href="#" />
       <Search onSubmitSearch={onSubmitSearch} />
-      <NavItem text="friends" href="#" />
       <Link to={'/watchlist'}>
         {/* <NavItem text="watchlist" onClick={onWatchListClicked} href="#" /> */}
         <NavItem text="watchlist" href="#" />
