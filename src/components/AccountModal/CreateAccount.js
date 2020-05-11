@@ -6,7 +6,7 @@ const CreateAccount = props => {
   const [password, setPassword] = useState('');
 
   const registerAccount = async (p_email, p_password) => {
-    const response = await fetch('http://localhost:1337/auth/local/register', {
+    const response = await fetch('https://moviefindernow.herokuapp.com/auth/local/register', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ const CreateAccount = props => {
         }}
       />
       <input
-        type="text"
+        type="password"
         placeholder="Password"
         onChange={e => {
           setPassword(e.target.value);
