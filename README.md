@@ -3,6 +3,8 @@
 ## Overview
 This is an imdb clone application created as a tier 2 Chingu Voyage Team Project. It has been built with the React JavaScript framework. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+**Link to Figma Design** : https://www.figma.com/file/owd1ciUtOkoGs9k601oMWw/movie-finder-app?node-id=0%3A1
+
 **LIVE LINK** : https://moviefindernow.netlify.app/
 
 ## Features
