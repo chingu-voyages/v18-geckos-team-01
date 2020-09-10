@@ -6,7 +6,9 @@ import Plus from '../images/plus.svg';
 import styled from 'styled-components';
 
 const MovieCard = props => {
+
   const onAddToWatchlistClickedHandler = () => {
+
     const movieToAdd = {
       id: props.id,
       poster: props.poster,
@@ -34,7 +36,8 @@ const MovieCard = props => {
         <StarIcon src={Star} alt={'star logo for imdb rating'} />
         <span>{props.imdbRating}</span>
         <CardText>
-          <CardTextTitle>{props.title}</CardTextTitle> ({props.year})
+          <CardTextTitle>{props.title}</CardTextTitle>
+          <Year>{props.year}</Year>
         </CardText>
         <Link to={`/watchlist`}>
           <AddToWatchlist
@@ -56,7 +59,7 @@ const MovieGrid = props => {
     if (props.query !== '' && props.userMovies.length === 0) {
       fetch(
         'https://movie-database-imdb-alternative.p.rapidapi.com/?&r=json&s=' +
-          props.query,
+        props.query,
         {
           method: 'GET',
           headers: {
@@ -72,6 +75,7 @@ const MovieGrid = props => {
           console.error(error);
           setError(error);
         });
+
     } else if (props.userMovies.length > 0) {
       setMovieList(props.userMovies);
     }
@@ -196,6 +200,14 @@ const CardTextTitle = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+const Year = styled.div`
+  font-weight: 300;
+
+  @media only screen and (max-width: 480px) {
+    display: none;
+  }
 `;
 
 const AddToWatchlist = styled.img`
