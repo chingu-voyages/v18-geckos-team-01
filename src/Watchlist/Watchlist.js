@@ -18,7 +18,7 @@ const Watchlist = () => {
   console.log(watchlist);
 
   const onRemoveMovieClickedHandler = () => {
-    
+    alert('Delete movie from list');
   }
 
   return (
@@ -86,6 +86,7 @@ const Year = styled.div`
 const Trash = styled.button`
   grid-column: 5/6;
   border: none;
+  outline: none;
   background: none;
   cursor: pointer;
 
