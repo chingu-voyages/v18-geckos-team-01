@@ -62,6 +62,7 @@ const WatchlistContainer = styled.div`
 const WatchlistGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 20%);
+  row-gap: 5%;
   align-items: center;
   border-radius: 5px;
 `;
