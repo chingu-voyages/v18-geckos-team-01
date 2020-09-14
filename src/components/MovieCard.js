@@ -6,47 +6,49 @@ import Star from '../images/star.svg';
 import Plus from '../images/plus.svg';
 
 const MovieCard = props => {
-    const onAddToWatchlistClickedHandler = () => {
-        const movieToAdd = {
-            id: props.id,
-            poster: props.poster,
-            title: props.title,
-            rating: props.imdbRating,
-            year: props.year
-        };
-
-        axios
-            .post('./watchlist.json', movieToAdd)
-            .then(response => console.log(response))
-            .catch(error => console.log(error));
+  const onAddToWatchlistClickedHandler = () => {
+    const movieToAdd = {
+      id: props.id,
+      poster: props.poster,
+      title: props.title,
+      rating: props.imdbRating,
+      year: props.year
     };
 
-    return (
-        <Card>
-            <Link to={`/movieDetails/${props.id}`}>
-                <Poster
-                    className="movie-card-child"
-                    alt={`Movie title: ${props.title}`}
-                    src={props.poster}
-                />
-            </Link>
-            <CardFooter>
-                <StarIcon src={Star} alt={'star logo for imdb rating'} />
-                <span>{props.imdbRating}</span>
-                <CardText>
-                    <CardTextTitle>{props.title}</CardTextTitle>
-                    <Year>{props.year}</Year>
-                </CardText>
-                <Link to={`/watchlist`}>
-                    <AddToWatchlist
-                        src={Plus}
-                        alt={'plus sign icon to add movie to watchlist'}
-                        onClick={onAddToWatchlistClickedHandler}
-                    />
-                </Link>
-            </CardFooter>
-        </Card>
-    );
+    axios
+      .post('./watchlist.json', movieToAdd)
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
+  };
+
+  return (
+    <Card>
+      <Link to={`/movieDetails/${props.id}`}>
+        <Poster
+          className="movie-card-child"
+          alt={`Movie title: ${props.title}`}
+          src={props.poster}
+        />
+      </Link>
+      <CardFooter>
+        <Rating>
+          <StarIcon src={Star} alt={'star logo for imdb rating'} />
+          {props.imdbRating}
+        </Rating>
+        <CardText>
+          <CardTextTitle>{props.title}</CardTextTitle>
+          <Year>{props.year}</Year>
+        </CardText>
+        <Link to={`/watchlist`}>
+          <AddToWatchlist
+            src={Plus}
+            alt={'plus sign icon to add movie to watchlist'}
+            onClick={onAddToWatchlistClickedHandler}
+          />
+        </Link>
+      </CardFooter>
+    </Card>
+  );
 };
 
 export default MovieCard;
@@ -92,15 +94,21 @@ const CardFooter = styled.div`
   margin-left: -2px;
   width: inherit;
 
+  a {
+    align-self: end;
+  }
+
   @media only screen and (max-width: 499px) {
     height: 60px;
     font-size: 0.8rem;
   }
 `;
 
-const StarIcon = styled.img`
+const Rating = styled.div`
   grid-column: 1/2;
-  grid-row: 1/2;
+`;
+
+const StarIcon = styled.img`
   width: 1.2rem;
   height: 1.2rem;
   padding: 0.5rem 0.5rem 0rem 0.5rem;
@@ -113,7 +121,6 @@ const StarIcon = styled.img`
 
 const CardText = styled.div`
   grid-column: 1/2;
-  grid-row: 2/3;
   padding: 10px 0px 0px 10px;
   flex-wrap: wrap;
   font-weight: 600;
@@ -139,11 +146,9 @@ const Year = styled.div`
 
 const AddToWatchlist = styled.img`
   grid-column: 2/3;
-  grid-row: 2/3;
   width: 1.8rem;
   height: 1.8rem;
   cursor: pointer;
-  align-self: end;
   margin-bottom: 0.5rem;
   justify-self: center;
 

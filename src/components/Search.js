@@ -23,7 +23,6 @@ function Search({ onSubmitSearch }) {
             onChange = {handleChange} 
             onKeyUp = {handleEnterKey}
           />
-
       <SearchButton onClick = {handleSearch} />
     </SearchDiv>
   );
