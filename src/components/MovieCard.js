@@ -6,12 +6,13 @@ import Star from '../images/star.svg';
 import Plus from '../images/plus.svg';
 
 const MovieCard = props => {
+  
   const onAddToWatchlistClickedHandler = () => {
     const movieToAdd = {
       id: props.id,
       poster: props.poster,
       title: props.title,
-      rating: props.imdbRating,
+      imdbRating: props.imdbRating,
       year: props.year
     };
 
@@ -150,7 +151,8 @@ const AddToWatchlist = styled.img`
   height: 1.8rem;
   cursor: pointer;
   margin-bottom: 0.5rem;
-  justify-self: center;
+  float: right;
+  padding: 0px 10px 5px 0px;
 
   @media only screen and (max-width: 499px) {
     width: 1.5rem;
