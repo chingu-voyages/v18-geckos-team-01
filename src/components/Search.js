@@ -1,6 +1,35 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+function Search({ onSubmitSearch }) {
+  const [query, setQuery] = useState('');
+
+  const handleChange = event => setQuery(event.target.value);
+
+  const handleEnterKey = event => {
+    if (event.key === "Enter" && query !== '')
+      onSubmitSearch(query);
+  }
+
+  const handleSearch = () => {
+    if (query !== '') {
+      onSubmitSearch(query);
+    } 
+  }
+
+  return (
+    <SearchDiv>
+      <Input placeholder="Find Movies, TV Shows, Celebrities, and more..." 
+            onChange = {handleChange} 
+            onKeyUp = {handleEnterKey}
+          />
+      <SearchButton onClick = {handleSearch} />
+    </SearchDiv>
+  );
+}
+
+export default Search;
+
 const Input = styled.input`
   box-sizing: border-box;
   background: #000;
@@ -68,33 +97,3 @@ const SearchDiv = styled.div`
     width: 60%;
   }
 `;
-
-function Search({ onSubmitSearch }) {
-  const [query, setQuery] = useState('');
-
-  const handleChange = event => setQuery(event.target.value);
-
-  const handleEnterKey = event => {
-    if (event.key === "Enter" && query !== '')
-      onSubmitSearch(query);
-  }
-
-  const handleSearch = () => {
-    if (query !== '') {
-      onSubmitSearch(query);
-    } 
-  }
-
-  return (
-    <SearchDiv>
-      <Input placeholder="Find Movies, TV Shows, Celebrities, and more..." 
-            onChange = {handleChange} 
-            onKeyUp = {handleEnterKey}
-          />
-
-      <SearchButton onClick = {handleSearch} />
-    </SearchDiv>
-  );
-}
-
-export default Search;

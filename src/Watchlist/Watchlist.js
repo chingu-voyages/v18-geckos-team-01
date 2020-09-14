@@ -5,20 +5,28 @@ import styled from 'styled-components';
 
 const Watchlist = () => {
   const [watchlist, setWatchlist] = useState([]);
+  const database = 'https://movie-finder-21a43.firebaseio.com/watchlist.json';
 
   useEffect(() => {
     axios
-      .get('https://movie-finder-21a43.firebaseio.com/watchlist.json')
+      .get(database)
       .then(response => {
         setWatchlist(Object.values(response.data));
       })
       .catch(error => console.log(error));
   }, []);
 
-  console.log(watchlist);
+  console.log('Watchlist: ', watchlist);
 
-  const onRemoveMovieClickedHandler = () => {
-    alert('Delete movie from list');
+  const onRemoveMovieClickedHandler = (id) => {
+    const movieToRemove = watchlist.filter(item => item.id !== id);
+
+    axios
+      .put('./watchlist.json', movieToRemove)
+      .then(response => {
+        setWatchlist(response.data);
+      })
+      .catch(error => console.log(error));
   }
 
   return (
@@ -31,7 +39,7 @@ const Watchlist = () => {
             <Title>{movie.title}</Title>
             <Rating>{movie.imdbRating}</Rating>
             <Year>{movie.year}</Year>
-            <Trash onClick={onRemoveMovieClickedHandler}>
+            <Trash onClick={() => onRemoveMovieClickedHandler(movie.id)}>
               <img
                 src={trashcan}
                 alt="trash can icon to remove movie from watchlist"
@@ -54,13 +62,9 @@ const WatchlistContainer = styled.div`
 const WatchlistGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 20%);
+  row-gap: 5%;
   align-items: center;
   border-radius: 5px;
-  ${'' /* background: #333;
-
-  &:nth-child(2) {
-    background: #444;
-  } */}
 `;
 
 const GridHeaders = styled.div``;

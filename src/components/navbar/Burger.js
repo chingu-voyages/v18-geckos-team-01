@@ -1,10 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
+function Burger({ open, setOpen }) {
+  return (
+    <StyledBurger open={open} onClick={() => setOpen(!open)}>
+      <div />
+      <div />
+      <div />
+    </StyledBurger>
+  )
+}
+
+export default Burger;
+
 const StyledBurger = styled.button`
-  /* position: absolute; */
-  /* top: 2em; */
-  /* right: 2rem; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -15,7 +24,7 @@ const StyledBurger = styled.button`
   cursor: pointer;
   margin: 6px 10px 0 0;
   padding: 0;
-  z-index: 10;
+  z-index: 1001;
   
   &:focus {
     outline: none;
@@ -47,15 +56,3 @@ const StyledBurger = styled.button`
     display: none;
   }
 `;
-
-function Burger({ open, setOpen }) {
-  return (
-    <StyledBurger open={open} onClick={() => setOpen(!open)}>
-      <div />
-      <div />
-      <div />
-    </StyledBurger>
-  )
-}
-
-export default Burger;
