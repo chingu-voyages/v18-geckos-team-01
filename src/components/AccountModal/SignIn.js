@@ -7,7 +7,7 @@ const SignIn = props => {
   const [jwt, setJwt] = useState('');
 
   const SignInToAccount = async (p_email, p_password) => {
-    let response = await fetch('http://localhost:1337/auth/local', {
+    let response = await fetch('https://moviefindernow.herokuapp.com/auth/local', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
