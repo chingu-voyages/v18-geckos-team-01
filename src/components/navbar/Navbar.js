@@ -7,32 +7,6 @@ import BurgerMenu from './BurgerMenu';
 import styled from 'styled-components';
 import Logo from '../../images/cinema.svg';
 
-const StyledNav = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 1.2em;
-
-  @media screen and (max-width: 771px) {
-    justify-content: space-between;
-  }
-`;
-
-const StyledLogo = styled.a`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  width: 60px;
-  margin-left: 10px;
-  line-height: 60px;
-
-  @media screen and (max-width: 771px) {
-    margin-top: 8px;
-  }
-`;
-
 function Navbar({
   onSubmitSearch,
   onSignInLinkClicked,
@@ -76,3 +50,29 @@ function Navbar({
 }
 
 export default Navbar;
+
+const StyledNav = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.2em;
+
+  @media screen and (max-width: 771px) {
+    justify-content: space-between;
+  }
+`;
+
+const StyledLogo = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  margin-left: 10px;
+  line-height: 60px;
+
+  @media screen and (max-width: 771px) {
+    margin-top: 8px;
+  }
+`;

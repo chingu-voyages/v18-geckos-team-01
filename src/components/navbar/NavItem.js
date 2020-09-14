@@ -1,6 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
+function NavItem(props) {
+  return (
+     <StyledNavItem color={props.color} href={props.href} onClick={props.onClick}>
+    { props.isLoggedIn ? props.user.username : props.text }
+    </StyledNavItem>
+  );
+}
+
+export default NavItem;
+
 const StyledNavItem = styled.a`
   position: relative;
   display: inline-block;
@@ -35,13 +45,3 @@ const StyledNavItem = styled.a`
     display: none;
   }
 `;
-
-function NavItem(props) {
-  return (
-     <StyledNavItem color={props.color} href={props.href} onClick={props.onClick}>
-    { props.isLoggedIn ? props.user.username : props.text }
-    </StyledNavItem>
-  );
-}
-
-export default NavItem;

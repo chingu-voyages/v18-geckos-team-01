@@ -2,6 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import NavItem from './NavItem';
 
+function BurgerMenu({ onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLoggedIn, open }) {
+  return (
+    <StyledMenu open={open}>
+      <NavItem text="movies" href="#" />
+      <NavItem text="TV shows" href="#" />
+      <NavItem text="friends" href="#" />
+      <NavItem text="watchlist" onClick={onWatchListClicked} href="#" />
+      <NavItem onClick={onSignInLinkClicked} isLoggedIn={isLoggedIn} color="#f9c132" text="sign in" />
+    </StyledMenu>
+  )
+}
+export default BurgerMenu;
 
 const StyledMenu = styled.nav`
   display: ${props => (props.open ? 'flex' : 'none')};
@@ -17,10 +29,7 @@ const StyledMenu = styled.nav`
   right: 0;
   transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
   transition: transform 0.25s;
-  
-  @media (max-width: 771px) {
-    /* width: 100%; */
-  }
+  z-index: 1000;  
 
   a {
     display: block;
@@ -31,16 +40,3 @@ const StyledMenu = styled.nav`
     }
   }
 `;
-
-function BurgerMenu({onSubmitSearch, onSignInLinkClicked, onWatchListClicked, isLoggedIn, open}) {
-  return (
-    <StyledMenu open={open}>
-      <NavItem text="movies" href="#"/>
-      <NavItem text="TV shows" href="#"/>
-      <NavItem text="friends" href="#"/>
-      <NavItem text="watchlist" onClick={onWatchListClicked} href="#"/>
-      <NavItem onClick={onSignInLinkClicked} isLoggedIn={isLoggedIn} color="#f9c132" text="sign in" />
-    </StyledMenu>
-  )
-}
-export default BurgerMenu;
